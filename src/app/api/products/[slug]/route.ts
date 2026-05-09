@@ -11,7 +11,7 @@ export async function GET(
     const db = getDb();
     const { slug } = await params;
 
-    const product = db.prepare(`
+    const product = await db.prepare(`
       SELECT p.*, c.name as category_name, c.slug as category_slug
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
@@ -34,7 +34,7 @@ export async function GET(
     };
 
     // Get related products (same category, different product)
-    const related = db.prepare(`
+    const related = await db.prepare(`
       SELECT p.*, c.name as category_name, c.slug as category_slug
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
@@ -70,12 +70,12 @@ export async function PUT(
     const body = await request.json();
 
     // Find product by slug or id
-    const existing = db.prepare('SELECT id FROM products WHERE slug = ? OR id = ?').get(slug, slug) as { id: string } | undefined;
+    const existing = await db.prepare('SELECT id FROM products WHERE slug = ? OR id = ?').get(slug, slug) as { id: string } | undefined;
     if (!existing) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
     }
 
-    db.prepare(`
+    await db.prepare(`
       UPDATE products SET
         name = ?, slug = ?, category_id = ?, brand = ?, sku = ?,
         description = ?, features = ?, specifications = ?,
@@ -111,7 +111,7 @@ export async function DELETE(
     const db = getDb();
     const { slug } = await params;
 
-    db.prepare('DELETE FROM products WHERE slug = ? OR id = ?').run(slug, slug);
+    await db.prepare('DELETE FROM products WHERE slug = ? OR id = ?').run(slug, slug);
     return NextResponse.json({ message: 'Product deleted successfully' });
   } catch (error) {
     console.error('Delete product error:', error);

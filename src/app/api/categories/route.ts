@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   try {
     const db = getDb();
-    const categories = db.prepare(`
+    const categories = await db.prepare(`
       SELECT c.*, 
         (SELECT COUNT(*) FROM products p WHERE p.category_id = c.id AND p.status = 'active') as product_count
       FROM categories c
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     const { v4: uuid } = require('uuid');
     const id = uuid();
 
-    db.prepare(`
+    await db.prepare(`
       INSERT INTO categories (id, name, slug, description, image_url, display_order, is_active)
       VALUES (?, ?, ?, ?, ?, ?, ?)
     `).run(id, body.name, body.slug, body.description || '', body.image_url || '', body.display_order || 0, body.is_active !== false ? 1 : 0);

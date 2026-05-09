@@ -12,7 +12,7 @@ export async function PUT(
     const { id } = await params;
     const body = await request.json();
 
-    db.prepare(`
+    await db.prepare(`
       UPDATE banners SET headline = ?, subtext = ?, cta_label = ?, cta_link = ?, bg_color = ?, display_order = ?
       WHERE id = ?
     `).run(body.headline, body.subtext, body.cta_label, body.cta_link, body.bg_color || '#C8F53A', body.display_order || 0, id);
@@ -31,7 +31,7 @@ export async function DELETE(
   try {
     const db = getDb();
     const { id } = await params;
-    db.prepare('DELETE FROM banners WHERE id = ?').run(id);
+    await db.prepare('DELETE FROM banners WHERE id = ?').run(id);
     return NextResponse.json({ message: 'Banner deleted' });
   } catch (error) {
     console.error('Delete banner error:', error);

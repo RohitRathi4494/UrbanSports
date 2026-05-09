@@ -10,7 +10,7 @@ export async function DELETE(
   try {
     const db = getDb();
     const { id } = await params;
-    db.prepare('DELETE FROM promo_codes WHERE id = ?').run(id);
+    await db.prepare('DELETE FROM promo_codes WHERE id = ?').run(id);
     return NextResponse.json({ message: 'Promo code deleted' });
   } catch (error) {
     console.error('Delete promo error:', error);

@@ -12,7 +12,7 @@ export async function PUT(
     const { id } = await params;
     const body = await request.json();
 
-    db.prepare(`
+    await db.prepare(`
       UPDATE categories SET name = ?, slug = ?, description = ?, display_order = ?, updated_at = datetime('now')
       WHERE id = ?
     `).run(body.name, body.slug, body.description || '', body.display_order || 0, id);
@@ -31,7 +31,7 @@ export async function DELETE(
   try {
     const db = getDb();
     const { id } = await params;
-    db.prepare('DELETE FROM categories WHERE id = ?').run(id);
+    await db.prepare('DELETE FROM categories WHERE id = ?').run(id);
     return NextResponse.json({ message: 'Category deleted' });
   } catch (error) {
     console.error('Delete category error:', error);

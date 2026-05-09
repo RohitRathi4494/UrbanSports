@@ -1,29 +1,49 @@
-import Database from 'better-sqlite3';
-import path from 'path';
+import { createClient, Client } from '@libsql/client';
 
-const DB_PATH = path.join(process.cwd(), 'data', 'urban-sports.db');
+let client: Client;
+let initialized = false;
 
-let db: Database.Database;
-
-function getDb(): Database.Database {
-  if (!db) {
-    // Ensure data directory exists
-    const fs = require('fs');
-    const dir = path.dirname(DB_PATH);
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-    
-    db = new Database(DB_PATH);
-    db.pragma('journal_mode = WAL');
-    db.pragma('foreign_keys = ON');
-    initializeDatabase(db);
-  }
-  return db;
+interface Statement {
+  get: (...args: any[]) => Promise<any>;
+  all: (...args: any[]) => Promise<any[]>;
+  run: (...args: any[]) => Promise<{ lastInsertRowid: string | bigint | undefined, changes: number }>;
 }
 
-function initializeDatabase(db: Database.Database) {
-  db.exec(`
+export default function getDb() {
+  if (!client) {
+    const url = process.env.TURSO_DATABASE_URL || 'file:./data/urban-sports.db';
+    const authToken = process.env.TURSO_AUTH_TOKEN;
+    client = createClient({ url, authToken });
+    
+    if (!initialized && url.startsWith('file:')) {
+       initialized = true;
+       initializeDatabase(getDb()).catch(console.error);
+    }
+  }
+
+  return {
+    prepare: (sql: string): Statement => ({
+      get: async (...args: any[]) => {
+        const res = await client.execute({ sql, args });
+        return res.rows[0];
+      },
+      all: async (...args: any[]) => {
+        const res = await client.execute({ sql, args });
+        return res.rows;
+      },
+      run: async (...args: any[]) => {
+        const res = await client.execute({ sql, args });
+        return { lastInsertRowid: res.lastInsertRowid?.toString(), changes: res.rowsAffected };
+      }
+    }),
+    exec: async (sql: string) => {
+      await client.executeMultiple(sql);
+    }
+  };
+}
+
+async function initializeDatabase(db: any) {
+  await db.exec(`
     CREATE TABLE IF NOT EXISTS categories (
       id TEXT PRIMARY KEY,
       name TEXT NOT NULL,
@@ -139,13 +159,13 @@ function initializeDatabase(db: Database.Database) {
   `);
 
   // Check if we need to seed data
-  const categoryCount = db.prepare('SELECT COUNT(*) as count FROM categories').get() as { count: number };
+  const categoryCount = await db.prepare('SELECT COUNT(*) as count FROM categories').get() as { count: number };
   if (categoryCount.count === 0) {
-    seedDatabase(db);
+    await seedDatabase(db);
   }
 }
 
-function seedDatabase(db: Database.Database) {
+async function seedDatabase(db: any) {
   const { v4: uuid } = require('uuid');
 
   // Seed Categories
@@ -168,7 +188,7 @@ function seedDatabase(db: Database.Database) {
   for (const cat of categories) {
     const id = uuid();
     categoryIds[cat.slug] = id;
-    insertCategory.run(id, cat.name, cat.slug, cat.description, cat.display_order);
+    await insertCategory.run(id, cat.name, cat.slug, cat.description, cat.display_order);
   }
 
   // Seed Products
@@ -333,7 +353,7 @@ function seedDatabase(db: Database.Database) {
   `);
 
   for (const p of products) {
-    insertProduct.run(
+    await insertProduct.run(
       uuid(), p.name, p.slug, categoryIds[p.category_slug], p.brand, p.sku,
       p.description, p.features, p.specifications, p.price, p.mrp, p.images,
       p.stock, p.is_featured, p.is_new_arrival, p.tags, p.meta_title, p.meta_description
@@ -353,36 +373,34 @@ function seedDatabase(db: Database.Database) {
     'INSERT INTO testimonials (id, customer_name, city, rating, review, display_order) VALUES (?, ?, ?, ?, ?, ?)'
   );
   for (const t of testimonials) {
-    insertTestimonial.run(uuid(), t.customer_name, t.city, t.rating, t.review, t.display_order);
+    await insertTestimonial.run(uuid(), t.customer_name, t.city, t.rating, t.review, t.display_order);
   }
 
   // Seed Banners
   const insertBanner = db.prepare(
     'INSERT INTO banners (id, headline, subtext, cta_label, cta_link, bg_color, is_active, display_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
   );
-  insertBanner.run(uuid(), 'SEASON SALE: Up to 40% OFF', 'On all English Willow bats — Limited time offer!', 'Shop Bats Now', '/category/cricket-bats', '#C8F53A', 1, 1);
-  insertBanner.run(uuid(), 'FREE DELIVERY ABOVE ₹999', 'Shop your favorite cricket gear with free shipping across India', 'Shop Now', '/products', '#0A0A0A', 1, 2);
+  await insertBanner.run(uuid(), 'SEASON SALE: Up to 40% OFF', 'On all English Willow bats — Limited time offer!', 'Shop Bats Now', '/category/cricket-bats', '#C8F53A', 1, 1);
+  await insertBanner.run(uuid(), 'FREE DELIVERY ABOVE ₹999', 'Shop your favorite cricket gear with free shipping across India', 'Shop Now', '/products', '#0A0A0A', 1, 2);
 
   // Seed Promo Codes
   const insertPromo = db.prepare(
     'INSERT INTO promo_codes (id, code, discount_type, discount_value, min_order_value, expiry_date, usage_limit, is_active) VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
   );
-  insertPromo.run(uuid(), 'WELCOME5', 'percentage', 5, 500, '2027-12-31', 1000, 1);
-  insertPromo.run(uuid(), 'URBAN10', 'percentage', 10, 2000, '2027-06-30', 500, 1);
-  insertPromo.run(uuid(), 'FLAT200', 'flat', 200, 3000, '2027-03-31', 200, 1);
+  await insertPromo.run(uuid(), 'WELCOME5', 'percentage', 5, 500, '2027-12-31', 1000, 1);
+  await insertPromo.run(uuid(), 'URBAN10', 'percentage', 10, 2000, '2027-06-30', 500, 1);
+  await insertPromo.run(uuid(), 'FLAT200', 'flat', 200, 3000, '2027-03-31', 200, 1);
 
   // Seed Settings
   const insertSetting = db.prepare('INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)');
-  insertSetting.run('store_name', 'Urban Sports');
-  insertSetting.run('whatsapp_number', '919999999999');
-  insertSetting.run('store_email', 'admin@urbansports.in');
-  insertSetting.run('delivery_free_above', '999');
-  insertSetting.run('delivery_charge', '79');
-  insertSetting.run('gst_number', 'XXXXXXXXXXXXXXX');
-  insertSetting.run('instagram_url', 'https://instagram.com/urbansports');
-  insertSetting.run('youtube_url', 'https://youtube.com/@urbansports');
-  insertSetting.run('facebook_url', 'https://facebook.com/urbansports');
-  insertSetting.run('footer_text', '© 2026 Urban Sports. All rights reserved. Play Bold. Live Urban.');
+  await insertSetting.run('store_name', 'Urban Sports');
+  await insertSetting.run('whatsapp_number', '919999999999');
+  await insertSetting.run('store_email', 'admin@urbansports.in');
+  await insertSetting.run('delivery_free_above', '999');
+  await insertSetting.run('delivery_charge', '79');
+  await insertSetting.run('gst_number', 'XXXXXXXXXXXXXXX');
+  await insertSetting.run('instagram_url', 'https://instagram.com/urbansports');
+  await insertSetting.run('youtube_url', 'https://youtube.com/@urbansports');
+  await insertSetting.run('facebook_url', 'https://facebook.com/urbansports');
+  await insertSetting.run('footer_text', '© 2026 Urban Sports. All rights reserved. Play Bold. Live Urban.');
 }
-
-export default getDb;

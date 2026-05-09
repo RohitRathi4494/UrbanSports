@@ -12,7 +12,7 @@ export async function PUT(
     const { id } = await params;
     const body = await request.json();
 
-    db.prepare(`
+    await db.prepare(`
       UPDATE testimonials SET customer_name = ?, city = ?, rating = ?, review = ?, display_order = ?
       WHERE id = ?
     `).run(body.customer_name, body.city, body.rating, body.review, body.display_order || 0, id);
@@ -31,7 +31,7 @@ export async function DELETE(
   try {
     const db = getDb();
     const { id } = await params;
-    db.prepare('DELETE FROM testimonials WHERE id = ?').run(id);
+    await db.prepare('DELETE FROM testimonials WHERE id = ?').run(id);
     return NextResponse.json({ message: 'Testimonial deleted' });
   } catch (error) {
     console.error('Delete testimonial error:', error);

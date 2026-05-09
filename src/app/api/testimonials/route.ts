@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 export async function GET() {
   try {
     const db = getDb();
-    const testimonials = db.prepare(
+    const testimonials = await db.prepare(
       'SELECT * FROM testimonials WHERE is_active = 1 ORDER BY display_order ASC'
     ).all();
     return NextResponse.json({ testimonials });
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     const { v4: uuid } = require('uuid');
     const id = uuid();
 
-    db.prepare(`
+    await db.prepare(`
       INSERT INTO testimonials (id, customer_name, city, rating, review, photo_url, is_active, display_order)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `).run(id, body.customer_name, body.city, body.rating, body.review, body.photo_url || null, body.is_active !== false ? 1 : 0, body.display_order || 0);

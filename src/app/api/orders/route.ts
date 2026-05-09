@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
       params.push(payment);
     }
 
-    const orders = db.prepare(`SELECT * FROM orders ${where} ORDER BY created_at DESC`).all(...params);
+    const orders = await db.prepare(`SELECT * FROM orders ${where} ORDER BY created_at DESC`).all(...params);
     
     const parsed = (orders as Record<string, unknown>[]).map(o => ({
       ...o,
@@ -46,18 +46,18 @@ export async function POST(request: NextRequest) {
     
     // Generate order number
     const year = new Date().getFullYear();
-    const count = (db.prepare('SELECT COUNT(*) as c FROM orders').get() as { c: number }).c;
+    const count = (await db.prepare('SELECT COUNT(*) as c FROM orders').get() as { c: number }).c;
     const orderNumber = `US-${year}-${String(count + 1).padStart(4, '0')}`;
 
     // Get delivery charge settings
-    const freeAbove = db.prepare("SELECT value FROM settings WHERE key = 'delivery_free_above'").get() as { value: string } | undefined;
-    const deliveryCharge = db.prepare("SELECT value FROM settings WHERE key = 'delivery_charge'").get() as { value: string } | undefined;
+    const freeAbove = await db.prepare("SELECT value FROM settings WHERE key = 'delivery_free_above'").get() as { value: string } | undefined;
+    const deliveryCharge = await db.prepare("SELECT value FROM settings WHERE key = 'delivery_charge'").get() as { value: string } | undefined;
     
     const freeThreshold = parseFloat(freeAbove?.value || '999');
     const charge = parseFloat(deliveryCharge?.value || '79');
     const actualCharge = body.subtotal >= freeThreshold ? 0 : charge;
 
-    db.prepare(`
+    await db.prepare(`
       INSERT INTO orders (id, order_number, customer_name, customer_email, customer_phone, shipping_address, items, subtotal, delivery_charge, discount, total, promo_code, payment_method, payment_status, fulfillment_status)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
@@ -71,12 +71,12 @@ export async function POST(request: NextRequest) {
 
     // Update product stock
     for (const item of body.items) {
-      db.prepare('UPDATE products SET stock = stock - ? WHERE id = ?').run(item.quantity, item.product_id);
+      await db.prepare('UPDATE products SET stock = stock - ? WHERE id = ?').run(item.quantity, item.product_id);
     }
 
     // Update promo code usage
     if (body.promo_code) {
-      db.prepare('UPDATE promo_codes SET usage_count = usage_count + 1 WHERE code = ?').run(body.promo_code);
+      await db.prepare('UPDATE promo_codes SET usage_count = usage_count + 1 WHERE code = ?').run(body.promo_code);
     }
 
     return NextResponse.json({ id, order_number: orderNumber, total: body.subtotal + actualCharge - (body.discount || 0) }, { status: 201 });

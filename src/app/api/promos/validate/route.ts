@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     const db = getDb();
     const { code, subtotal } = await request.json();
 
-    const promo = db.prepare('SELECT * FROM promo_codes WHERE code = ? AND is_active = 1').get(code.toUpperCase()) as Record<string, unknown> | undefined;
+    const promo = await db.prepare('SELECT * FROM promo_codes WHERE code = ? AND is_active = 1').get(code.toUpperCase()) as Record<string, unknown> | undefined;
 
     if (!promo) {
       return NextResponse.json({ error: 'Invalid promo code' }, { status: 400 });

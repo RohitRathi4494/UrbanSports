@@ -11,7 +11,7 @@ export async function GET(
     const db = getDb();
     const { id } = await params;
 
-    const order = db.prepare('SELECT * FROM orders WHERE id = ? OR order_number = ?').get(id, id) as Record<string, unknown> | undefined;
+    const order = await db.prepare('SELECT * FROM orders WHERE id = ? OR order_number = ?').get(id, id) as Record<string, unknown> | undefined;
     if (!order) {
       return NextResponse.json({ error: 'Order not found' }, { status: 404 });
     }
@@ -39,16 +39,16 @@ export async function PUT(
     const body = await request.json();
 
     if (body.fulfillment_status) {
-      db.prepare("UPDATE orders SET fulfillment_status = ?, updated_at = datetime('now') WHERE id = ?").run(body.fulfillment_status, id);
+      await db.prepare("UPDATE orders SET fulfillment_status = ?, updated_at = datetime('now') WHERE id = ?").run(body.fulfillment_status, id);
     }
     if (body.payment_status) {
-      db.prepare("UPDATE orders SET payment_status = ?, updated_at = datetime('now') WHERE id = ?").run(body.payment_status, id);
+      await db.prepare("UPDATE orders SET payment_status = ?, updated_at = datetime('now') WHERE id = ?").run(body.payment_status, id);
     }
     if (body.admin_notes !== undefined) {
-      db.prepare("UPDATE orders SET admin_notes = ?, updated_at = datetime('now') WHERE id = ?").run(body.admin_notes, id);
+      await db.prepare("UPDATE orders SET admin_notes = ?, updated_at = datetime('now') WHERE id = ?").run(body.admin_notes, id);
     }
     if (body.razorpay_payment_id) {
-      db.prepare("UPDATE orders SET razorpay_payment_id = ?, updated_at = datetime('now') WHERE id = ?").run(body.razorpay_payment_id, id);
+      await db.prepare("UPDATE orders SET razorpay_payment_id = ?, updated_at = datetime('now') WHERE id = ?").run(body.razorpay_payment_id, id);
     }
 
     return NextResponse.json({ message: 'Order updated successfully' });

@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
 
     // Get total count
     const countQuery = `SELECT COUNT(*) as total FROM products p LEFT JOIN categories c ON p.category_id = c.id ${where}`;
-    const countResult = db.prepare(countQuery).get(...params) as { total: number };
+    const countResult = await db.prepare(countQuery).get(...params) as { total: number };
 
     // Get products
     const query = `
@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
       ${where} ${orderBy} 
       LIMIT ? OFFSET ?
     `;
-    const products = db.prepare(query).all(...params, limit, offset) as Record<string, unknown>[];
+    const products = await db.prepare(query).all(...params, limit, offset) as Record<string, unknown>[];
 
     // Parse JSON fields
     const parsed = products.map((p) => ({
@@ -94,7 +94,7 @@ export async function GET(request: NextRequest) {
     }));
 
     // Get brands for filtering
-    const brands = db.prepare("SELECT DISTINCT brand FROM products WHERE status = 'active' AND brand IS NOT NULL ORDER BY brand").all() as { brand: string }[];
+    const brands = await db.prepare("SELECT DISTINCT brand FROM products WHERE status = 'active' AND brand IS NOT NULL ORDER BY brand").all() as { brand: string }[];
 
     return NextResponse.json({
       products: parsed,
@@ -117,7 +117,7 @@ export async function POST(request: NextRequest) {
     const { v4: uuid } = require('uuid');
     const id = uuid();
 
-    db.prepare(`
+    await db.prepare(`
       INSERT INTO products (id, name, slug, category_id, brand, sku, description, features, specifications, price, mrp, images, variants, stock, low_stock_threshold, status, is_featured, is_new_arrival, tags, meta_title, meta_description, display_order)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(

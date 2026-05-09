@@ -9,12 +9,12 @@ export async function POST(request: NextRequest) {
     const { email } = await request.json();
     const { v4: uuid } = require('uuid');
 
-    const existing = db.prepare('SELECT id FROM newsletter_subscribers WHERE email = ?').get(email);
+    const existing = await db.prepare('SELECT id FROM newsletter_subscribers WHERE email = ?').get(email);
     if (existing) {
       return NextResponse.json({ message: 'Already subscribed!' });
     }
 
-    db.prepare('INSERT INTO newsletter_subscribers (id, email) VALUES (?, ?)').run(uuid(), email);
+    await db.prepare('INSERT INTO newsletter_subscribers (id, email) VALUES (?, ?)').run(uuid(), email);
     return NextResponse.json({ message: 'Subscribed successfully!' }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 });
