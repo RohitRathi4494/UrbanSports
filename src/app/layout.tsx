@@ -5,28 +5,26 @@ import ClientProviders from "@/components/ClientProviders";
 
 export const metadata: Metadata = {
   title: {
-    default: "Urban Sports — Premium Cricket Equipment Store | Play Bold. Live Urban.",
-    template: "%s | Urban Sports",
+    default: "Urban Sports Studio — Premium Cricket Equipment Store | Play Bold. Live Urban.",
+    template: "%s | Urban Sports Studio",
   },
-  description:
-    "India's premium online cricket equipment store. Shop authentic cricket bats, balls, protective gear, shoes & accessories from top brands. Free delivery above ₹999. WhatsApp support.",
+  description: "India's premium online cricket equipment store. Authentic products from top brands like SG, SS, Kookaburra, and GM. Fast delivery across India.",
   keywords: [
     "cricket equipment",
-    "cricket bats",
-    "cricket balls",
-    "batting pads",
+    "buy cricket bat online",
+    "english willow bats",
     "cricket helmets",
-    "cricket shoes",
-    "online cricket store india",
-    "urban sports",
+    "cricket gear india",
+    "urban sports studio",
+    "premium cricket store"
   ],
   openGraph: {
-    title: "Urban Sports — Premium Cricket Equipment Store",
-    description:
-      "India's premium online cricket equipment store. Authentic products, fast delivery, WhatsApp support.",
-    type: "website",
+    title: "Urban Sports Studio — Premium Cricket Equipment Store",
+    description: "India's premium online cricket equipment store. Authentic products, fast delivery, WhatsApp support.",
+    url: "https://urbansports.in",
+    siteName: "Urban Sports Studio",
     locale: "en_IN",
-    siteName: "Urban Sports",
+    type: "website",
   },
 };
 

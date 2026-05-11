@@ -21,7 +21,7 @@ export default function TestimonialsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h1 className="font-display text-5xl sm:text-6xl text-white">CUSTOMER REVIEWS</h1>
-          <p className="text-text-secondary mt-3 text-lg">What our customers say about Urban Sports</p>
+          <p className="text-text-secondary mt-3 text-lg">What our customers say about Urban Sports Studio</p>
         </div>
 
         {loading ? (

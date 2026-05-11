@@ -77,8 +77,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-baseline gap-1 mb-4">
-              <span className="font-display text-2xl text-white">URBAN</span>
-              <span className="font-display text-2xl text-accent">SPORTS</span>
+              <span className="font-display text-2xl text-white">URBAN SPORTS</span>
+              <span className="font-display text-2xl text-accent">STUDIO</span>
             </Link>
             <p className="text-text-secondary text-sm leading-relaxed mb-6">
               India&apos;s premium cricket equipment store. Authentic products from top brands, 

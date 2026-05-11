@@ -15,7 +15,7 @@ export default function AboutPage() {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <h1 className="font-display text-6xl sm:text-7xl text-white mb-4">
-              ABOUT <span className="text-accent">URBAN SPORTS</span>
+              ABOUT <span className="text-accent">URBAN SPORTS STUDIO</span>
             </h1>
             <p className="text-text-secondary text-xl leading-relaxed max-w-2xl mx-auto">
               Born in the heart of Gurugram, we&apos;re on a mission to make premium cricket gear 
@@ -32,7 +32,7 @@ export default function AboutPage() {
             <h2 className="font-display text-4xl text-white mb-6">OUR STORY</h2>
             <div className="space-y-4 text-text-secondary leading-relaxed">
               <p>
-                Urban Sports was founded in 2024 by a group of cricket enthusiasts who noticed a gap in the market — 
+                Urban Sports Studio was founded in 2024 by a group of cricket enthusiasts who noticed a gap in the market — 
                 while there were many cricket stores, very few offered a truly premium, trustworthy online shopping 
                 experience backed by genuine products and excellent customer service.
               </p>
@@ -43,7 +43,7 @@ export default function AboutPage() {
                 no compromises.
               </p>
               <p>
-                Today, Urban Sports has grown into a trusted name with over 500+ products, 10,000+ happy customers, 
+                Today, Urban Sports Studio has grown into a trusted name with over 500+ products, 10,000+ happy customers, 
                 and a 4.8-star rating. But our mission remains the same — to fuel your passion for cricket with 
                 the best gear, delivered with love and precision.
               </p>

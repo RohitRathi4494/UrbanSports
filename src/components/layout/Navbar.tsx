@@ -64,8 +64,8 @@ export default function Navbar() {
                 <circle cx="24" cy="24" r="5" stroke="#C8F53A" strokeWidth="2" fill="none"/>
               </svg>
               <div className="flex items-baseline gap-1">
-                <span className="font-display text-2xl lg:text-3xl tracking-wider text-white">URBAN</span>
-                <span className="font-display text-2xl lg:text-3xl tracking-wider text-accent">SPORTS</span>
+                <span className="font-display text-2xl lg:text-3xl tracking-wider text-white">URBAN SPORTS</span>
+                <span className="font-display text-2xl lg:text-3xl tracking-wider text-accent">STUDIO</span>
               </div>
             </Link>
 
