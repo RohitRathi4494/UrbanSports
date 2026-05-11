@@ -37,6 +37,10 @@ export default function AdminEditProductPage() {
   const [metaDescription, setMetaDescription] = useState('');
 
   useEffect(() => {
+    if (name && !slug) setSlug(generateSlug(name));
+  }, [name, slug]);
+
+  useEffect(() => {
     Promise.all([
       fetch('/api/categories').then(r => r.json()),
       fetch(`/api/products/${productId}`).then(r => r.json()),
