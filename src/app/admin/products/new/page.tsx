@@ -19,6 +19,7 @@ export default function AdminNewProductPage() {
   const [brand, setBrand] = useState('');
   const [sku, setSku] = useState('');
   const [description, setDescription] = useState('');
+  const [images, setImages] = useState<string[]>(['']);
   const [features, setFeatures] = useState<string[]>(['']);
   const [specs, setSpecs] = useState<{ key: string; value: string }[]>([{ key: '', value: '' }]);
   const [price, setPrice] = useState('');
@@ -50,12 +51,24 @@ export default function AdminNewProductPage() {
       const specsObj: Record<string, string> = {};
       specs.forEach(s => { if (s.key.trim()) specsObj[s.key.trim()] = s.value.trim(); });
 
+      const finalImages = images.map(i => i.trim()).filter(Boolean);
+      if (finalImages.length === 0) {
+        toast.error('At least 1 image is required');
+        setSaving(false);
+        return;
+      }
+      if (finalImages.length > 6) {
+        toast.error('Maximum 6 images allowed');
+        setSaving(false);
+        return;
+      }
+
       const body = {
         name, slug, category_id: categoryId || null, brand, sku, description,
         features: features.filter(f => f.trim()),
         specifications: specsObj,
         price: parseFloat(price), mrp: parseFloat(mrp),
-        images: [],
+        images: finalImages,
         stock: parseInt(stock) || 0,
         low_stock_threshold: parseInt(lowStockThreshold) || 5,
         status, is_featured: isFeatured, is_new_arrival: isNewArrival,
@@ -141,6 +154,29 @@ export default function AdminNewProductPage() {
           <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={6}
             className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50 resize-none"
             placeholder="Product description (supports HTML)..." />
+        </div>
+
+        {/* Images */}
+        <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
+          <h2 className="font-display text-lg text-text-primary tracking-wider">PRODUCT IMAGES</h2>
+          <p className="text-sm text-text-secondary">Provide image URLs (e.g. /products/bat1.png or https://...). Minimum 1, Maximum 6.</p>
+          {images.map((img, i) => (
+            <div key={i} className="flex gap-2">
+              <input type="text" value={img} onChange={(e) => {
+                const copy = [...images]; copy[i] = e.target.value; setImages(copy);
+              }}
+                className="flex-1 bg-bg-primary border border-border rounded-xl px-4 py-2.5 text-text-primary text-sm focus:outline-none focus:border-accent/50"
+                placeholder="Image URL" />
+              {images.length > 1 && (
+                <button onClick={() => setImages(images.filter((_, j) => j !== i))}
+                  className="p-2 text-text-secondary hover:text-danger"><X size={16} /></button>
+              )}
+            </div>
+          ))}
+          {images.length < 6 && (
+            <button onClick={() => setImages([...images, ''])}
+              className="flex items-center gap-1 text-accent text-sm hover:underline"><Plus size={14} /> Add Another Image</button>
+          )}
         </div>
 
         {/* Features */}
