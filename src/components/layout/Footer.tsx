@@ -33,7 +33,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10 py-16">
           <div className="flex flex-col md:flex-row items-center justify-between gap-10">
             <div>
-              <h3 className="font-display text-3xl text-white">GET 5% OFF YOUR FIRST ORDER</h3>
+              <h3 className="font-display text-3xl text-text-primary">GET 5% OFF YOUR FIRST ORDER</h3>
               <p className="text-text-secondary mt-1">Subscribe to our newsletter and never miss a deal.</p>
             </div>
             <form
@@ -58,7 +58,7 @@ export default function Footer() {
                 name="email"
                 placeholder="Enter your email"
                 required
-                className="bg-bg-primary border border-border rounded-l-xl px-4 py-3 text-white placeholder-text-secondary focus:outline-none focus:border-accent/50 w-full md:w-72"
+                className="bg-bg-primary border border-border rounded-l-xl px-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent/50 w-full md:w-72"
               />
               <button
                 type="submit"
@@ -77,7 +77,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-baseline gap-1 mb-4">
-              <span className="font-display text-2xl text-white">URBAN SPORTS</span>
+              <span className="font-display text-2xl text-text-primary">URBAN SPORTS</span>
               <span className="font-display text-2xl text-accent">STUDIO</span>
             </Link>
             <p className="text-text-secondary text-sm leading-relaxed mb-6">
@@ -105,7 +105,7 @@ export default function Footer() {
 
           {/* Shop */}
           <div>
-            <h4 className="font-display text-lg text-white mb-4 tracking-wider">SHOP</h4>
+            <h4 className="font-display text-lg text-text-primary mb-4 tracking-wider">SHOP</h4>
             <ul className="space-y-2.5">
               {footerLinks.shop.map((link) => (
                 <li key={link.label}>
@@ -119,7 +119,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="font-display text-lg text-white mb-4 tracking-wider">COMPANY</h4>
+            <h4 className="font-display text-lg text-text-primary mb-4 tracking-wider">COMPANY</h4>
             <ul className="space-y-2.5">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
@@ -140,7 +140,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-display text-lg text-white mb-4 tracking-wider">CONTACT</h4>
+            <h4 className="font-display text-lg text-text-primary mb-4 tracking-wider">CONTACT</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm text-text-secondary">
                 <MapPin size={16} className="mt-0.5 text-accent flex-shrink-0" />

@@ -55,7 +55,7 @@ export default function CartPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <ShoppingCart size={64} className="mx-auto text-white/20 mb-6" />
-          <h1 className="font-display text-4xl text-white mb-4">YOUR CART IS EMPTY</h1>
+          <h1 className="font-display text-4xl text-text-primary mb-4">YOUR CART IS EMPTY</h1>
           <p className="text-text-secondary mb-8">Looks like you haven&apos;t added anything yet.</p>
           <Link
             href="/products"
@@ -71,7 +71,7 @@ export default function CartPage() {
   return (
     <div className="min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="font-display text-4xl sm:text-5xl text-white mb-8">YOUR CART</h1>
+        <h1 className="font-display text-4xl sm:text-5xl text-text-primary mb-8">YOUR CART</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
@@ -94,7 +94,7 @@ export default function CartPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <Link href={`/product/${item.product.slug}`} className="text-white font-medium hover:text-accent transition-colors line-clamp-2">
+                      <Link href={`/product/${item.product.slug}`} className="text-text-primary font-medium hover:text-accent transition-colors line-clamp-2">
                         {item.product.name}
                       </Link>
                       {item.product.brand && (
@@ -116,14 +116,14 @@ export default function CartPage() {
                     <div className="flex items-center gap-1">
                       <button
                         onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                        className="w-8 h-8 bg-bg-primary border border-border rounded-lg flex items-center justify-center text-white hover:border-accent/30 transition-colors"
+                        className="w-8 h-8 bg-bg-primary border border-border rounded-lg flex items-center justify-center text-text-primary hover:border-accent/30 transition-colors"
                       >
                         <Minus size={14} />
                       </button>
-                      <span className="w-10 text-center text-white text-sm font-medium">{item.quantity}</span>
+                      <span className="w-10 text-center text-text-primary text-sm font-medium">{item.quantity}</span>
                       <button
                         onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                        className="w-8 h-8 bg-bg-primary border border-border rounded-lg flex items-center justify-center text-white hover:border-accent/30 transition-colors"
+                        className="w-8 h-8 bg-bg-primary border border-border rounded-lg flex items-center justify-center text-text-primary hover:border-accent/30 transition-colors"
                       >
                         <Plus size={14} />
                       </button>
@@ -147,7 +147,7 @@ export default function CartPage() {
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-              <h3 className="font-display text-xl text-white tracking-wider">ORDER SUMMARY</h3>
+              <h3 className="font-display text-xl text-text-primary tracking-wider">ORDER SUMMARY</h3>
               
               {/* Promo Code */}
               <div>
@@ -158,7 +158,7 @@ export default function CartPage() {
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value)}
                     placeholder="Enter code"
-                    className="flex-1 bg-bg-primary border border-border rounded-xl px-4 py-2.5 text-sm text-white placeholder-text-secondary focus:outline-none focus:border-accent/50"
+                    className="flex-1 bg-bg-primary border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent/50"
                   />
                   <button
                     onClick={handleApplyPromo}
@@ -175,11 +175,11 @@ export default function CartPage() {
               <div className="border-t border-border pt-4 space-y-3">
                 <div className="flex justify-between text-sm">
                   <span className="text-text-secondary">Subtotal</span>
-                  <span className="text-white">{formatPrice(subtotal)}</span>
+                  <span className="text-text-primary">{formatPrice(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-text-secondary">Delivery</span>
-                  <span className={deliveryCharge === 0 ? 'text-success' : 'text-white'}>
+                  <span className={deliveryCharge === 0 ? 'text-success' : 'text-text-primary'}>
                     {deliveryCharge === 0 ? 'FREE' : formatPrice(deliveryCharge)}
                   </span>
                 </div>
@@ -190,7 +190,7 @@ export default function CartPage() {
                   </div>
                 )}
                 <div className="border-t border-border pt-3 flex justify-between">
-                  <span className="font-semibold text-white">Total</span>
+                  <span className="font-semibold text-text-primary">Total</span>
                   <span className="font-display text-2xl text-accent">{formatPrice(total)}</span>
                 </div>
               </div>

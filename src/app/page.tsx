@@ -72,21 +72,21 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
-  const categoryIcons: Record<string, string> = {
-    'cricket-bats': '🏏',
-    'cricket-balls': '⚾',
-    'batting-pads-gloves': '🧤',
-    'helmets-protective-gear': '⛑️',
-    'cricket-shoes-spikes': '👟',
-    'bags-kit-bags': '🎒',
-    'stumps-accessories': '🪵',
-    'clothing-apparel': '👕',
+  const categoryImages: Record<string, string> = {
+    'cricket-bats': '/cricket bats.png',
+    'batting-pads': '/cricket pads.png',
+    'batting-gloves': '/cricket gloves.jpg',
+    'helmets': '/cricket helmet.png',
+    'kit-bags': '/cricket kit bag.webp',
+    'cricket-balls': '/cricket ball.webp',
+    'other-accessories': '/wicket keeping gloves.webp',
+    'team-jerseys': '/cricket jersey.png',
   };
 
   return (
     <div className="min-h-screen">
       {/* ========== HERO SECTION ========== */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[80vh] lg:min-h-[85vh] flex items-center overflow-hidden pt-10 border-b border-white/5 dark:border-border">
         {/* Animated background */}
         <div className="absolute inset-0 bg-gradient-to-br from-bg-primary via-bg-surface to-bg-primary" />
         <div className="absolute inset-0">
@@ -97,86 +97,97 @@ export default function HomePage() {
           <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
         </div>
 
-        {/* Large decorative cricket bat silhouette */}
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-[0.04] hidden lg:block">
-          <svg width="500" height="800" viewBox="0 0 100 200" fill="currentColor" className="text-accent">
-            <rect x="35" y="10" width="30" height="120" rx="8" />
-            <rect x="40" y="130" width="20" height="60" rx="4" />
-          </svg>
-        </div>
+        {/* Hero Image - Absolutely positioned to bottom right */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="absolute bottom-0 right-0 lg:right-0 xl:right-10 h-[60%] sm:h-[70%] lg:h-[98%] xl:h-[100%] hidden md:block pointer-events-none z-10"
+        >
+          {/* Image backdrop effect */}
+          <div className="absolute inset-10 bg-accent/20 rounded-full blur-3xl transform -rotate-6 scale-105 pointer-events-none" />
+          <img 
+            src="/hero-section.png" 
+            alt="Premium Cricket Equipment" 
+            className="relative z-10 h-full w-auto object-contain object-bottom drop-shadow-2xl pointer-events-auto"
+          />
+        </motion.div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 rounded-full px-4 py-1.5 mb-6">
-              <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-              <span className="text-accent text-sm font-medium">Premium Cricket Equipment Store</span>
-            </div>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-display text-6xl sm:text-7xl lg:text-9xl tracking-tight leading-none mb-4"
-          >
-            <span className="text-white">PLAY BOLD.</span>
-            <br />
-            <span className="text-accent">LIVE URBAN.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-text-secondary text-lg sm:text-xl max-w-2xl mx-auto mb-8 leading-relaxed"
-          >
-            India&apos;s premium cricket equipment destination. Authentic gear from top brands, 
-            delivered to your doorstep with love and precision.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Link
-              href="/products"
-              className="inline-flex items-center gap-2 bg-accent text-bg-primary px-8 py-4 rounded-xl font-semibold text-lg hover:bg-accent-hover transition-all hover:shadow-lg hover:shadow-accent/20 hover:-translate-y-0.5"
+        <div className="relative z-20 w-full mx-auto px-4 md:px-8">
+          <div className="max-w-2xl py-2">
+            
+            {/* Left Column - Text Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              Shop Now <ArrowRight size={20} />
-            </Link>
-            <Link
-              href="/products"
-              className="inline-flex items-center gap-2 border border-border text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/5 hover:border-white/20 transition-all"
-            >
-              Explore Products
-            </Link>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex items-center justify-center gap-8 sm:gap-16 mt-16"
-          >
-            {[
-              { value: '500+', label: 'Products' },
-              { value: '10K+', label: 'Happy Customers' },
-              { value: '50+', label: 'Brands' },
-              { value: '4.8★', label: 'Rating' },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="font-display text-2xl sm:text-3xl text-accent">{stat.value}</div>
-                <div className="text-text-secondary text-xs sm:text-sm mt-1">{stat.label}</div>
+              <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 rounded-full px-4 py-1.5 mb-6">
+                <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+                <span className="text-accent text-sm font-medium">Premium Cricket Equipment Store</span>
               </div>
-            ))}
-          </motion.div>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-display text-5xl sm:text-6xl lg:text-7xl tracking-tight leading-none mb-3"
+            >
+              <span className="text-text-primary">PLAY BOLD.</span>
+              <br />
+              <span className="text-accent">LIVE URBAN.</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-text-secondary text-base sm:text-lg max-w-md mb-5 leading-relaxed"
+            >
+              India&apos;s premium cricket equipment destination. Authentic gear from top brands, 
+              delivered to your doorstep with love and precision.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-col sm:flex-row items-start gap-3"
+            >
+              <Link
+                href="/products"
+                className="inline-flex items-center justify-center gap-2 bg-accent text-[#0A0A0A] px-6 py-3 rounded-xl font-semibold text-base sm:text-lg hover:bg-accent-hover transition-all hover:shadow-lg hover:shadow-accent/20 hover:-translate-y-0.5 w-full sm:w-auto"
+              >
+                Shop Now <ArrowRight size={18} />
+              </Link>
+              <Link
+                href="/products"
+                className="inline-flex items-center justify-center gap-2 border border-border text-text-primary px-6 py-3 rounded-xl font-semibold text-base sm:text-lg hover:bg-black/5 dark:hover:bg-white/5 hover:border-black/20 dark:hover:border-white/20 transition-all w-full sm:w-auto"
+              >
+                Explore Products
+              </Link>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="flex items-center gap-5 sm:gap-8 mt-5"
+            >
+              {[
+                { value: '500+', label: 'Products' },
+                { value: '10K+', label: 'Happy Customers' },
+                { value: '50+', label: 'Brands' },
+              ].map((stat) => (
+                <div key={stat.label} className="text-left">
+                  <div className="font-display text-xl sm:text-2xl text-accent">{stat.value}</div>
+                  <div className="text-text-secondary text-xs mt-0.5">{stat.label}</div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -205,10 +216,10 @@ export default function HomePage() {
       </div>
 
       {/* ========== FEATURED CATEGORIES ========== */}
-      <AnimatedSection className="py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <AnimatedSection className="py-20 lg:py-24">
+        <div className="w-full mx-auto px-4 md:px-8">
           <div className="text-center mb-12">
-            <h2 className="font-display text-4xl sm:text-5xl text-white mb-3">SHOP BY CATEGORY</h2>
+            <h2 className="font-display text-4xl sm:text-5xl text-text-primary mb-3">SHOP BY CATEGORY</h2>
             <p className="text-text-secondary">Find everything you need for the game</p>
           </div>
 
@@ -225,16 +236,18 @@ export default function HomePage() {
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/90 via-transparent to-transparent z-10" />
                   
-                  {/* Decorative background */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-6xl opacity-30 group-hover:opacity-50 group-hover:scale-110 transition-all duration-500">
-                      {categoryIcons[cat.slug] || '🏏'}
-                    </span>
+                  {/* Image background */}
+                  <div className="absolute inset-0 bg-bg-surface overflow-hidden">
+                    <img 
+                      src={categoryImages[cat.slug] || '/hero-section.png'}
+                      alt={cat.name}
+                      className="w-full h-full object-cover opacity-50 group-hover:opacity-70 group-hover:scale-110 transition-all duration-500"
+                    />
                   </div>
 
                   {/* Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
-                    <h3 className="font-display text-xl text-white group-hover:text-accent transition-colors tracking-wider">
+                    <h3 className="font-display text-xl text-text-primary group-hover:text-accent transition-colors tracking-wider">
                       {cat.name.toUpperCase()}
                     </h3>
                     {cat.product_count !== undefined && (
@@ -253,12 +266,12 @@ export default function HomePage() {
 
       {/* ========== NEW ARRIVALS ========== */}
       {products.length > 0 && (
-        <AnimatedSection className="py-24 lg:py-32 bg-bg-surface/50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="py-20 lg:py-24 bg-bg-surface/50">
+          <div className="w-full mx-auto px-4 md:px-8">
             <div className="flex items-end justify-between mb-10">
               <div>
                 <span className="text-accent text-sm font-semibold uppercase tracking-wider">Just Dropped</span>
-                <h2 className="font-display text-4xl sm:text-5xl text-white mt-1">NEW ARRIVALS</h2>
+                <h2 className="font-display text-4xl sm:text-5xl text-text-primary mt-1">NEW ARRIVALS</h2>
               </div>
               <Link
                 href="/products?sort=newest"
@@ -286,7 +299,7 @@ export default function HomePage() {
       {/* ========== OFFER BANNER ========== */}
       {banners.length > 0 && (
         <AnimatedSection className="py-12 lg:py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="w-full mx-auto px-4 md:px-8">
             <Link
               href={banners[0].cta_link || '/products'}
               className="block relative overflow-hidden rounded-3xl bg-gradient-to-r from-accent/20 via-accent/10 to-accent/5 border border-accent/20 p-8 sm:p-12 group hover:border-accent/40 transition-all duration-300"
@@ -306,12 +319,12 @@ export default function HomePage() {
 
       {/* ========== BEST SELLERS ========== */}
       {featured.length > 0 && (
-        <AnimatedSection className="py-24 lg:py-32">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="py-20 lg:py-24">
+          <div className="w-full mx-auto px-4 md:px-8">
             <div className="flex items-end justify-between mb-10">
               <div>
                 <span className="text-accent text-sm font-semibold uppercase tracking-wider">Fan Favorites</span>
-                <h2 className="font-display text-4xl sm:text-5xl text-white mt-1">BEST SELLERS</h2>
+                <h2 className="font-display text-4xl sm:text-5xl text-text-primary mt-1">BEST SELLERS</h2>
               </div>
               <Link
                 href="/products?featured=1"
@@ -331,9 +344,9 @@ export default function HomePage() {
       )}
 
       {/* ========== WHY CHOOSE US ========== */}
-      <AnimatedSection className="py-24 lg:py-32 bg-bg-surface/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-4xl sm:text-5xl text-white text-center mb-12">WHY CHOOSE US</h2>
+      <AnimatedSection className="py-20 lg:py-24 bg-bg-surface/50">
+        <div className="w-full mx-auto px-4 md:px-8">
+          <h2 className="font-display text-4xl sm:text-5xl text-text-primary text-center mb-12">WHY CHOOSE US</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: <Shield className="w-8 h-8" />, title: 'Authentic Products', desc: '100% genuine products from authorized dealers' },
@@ -352,7 +365,7 @@ export default function HomePage() {
                 <div className="w-16 h-16 mx-auto bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-4 group-hover:bg-accent/20 transition-colors">
                   {item.icon}
                 </div>
-                <h3 className="font-display text-xl text-white mb-2 tracking-wide">{item.title.toUpperCase()}</h3>
+                <h3 className="font-display text-xl text-text-primary mb-2 tracking-wide">{item.title.toUpperCase()}</h3>
                 <p className="text-text-secondary text-sm">{item.desc}</p>
               </motion.div>
             ))}
@@ -362,11 +375,11 @@ export default function HomePage() {
 
       {/* ========== TESTIMONIALS ========== */}
       {testimonials.length > 0 && (
-        <AnimatedSection className="py-24 lg:py-32">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="py-20 lg:py-24">
+          <div className="w-full mx-auto px-4 md:px-8">
             <div className="text-center mb-12">
               <span className="text-accent text-sm font-semibold uppercase tracking-wider">What Our Customers Say</span>
-              <h2 className="font-display text-4xl sm:text-5xl text-white mt-2">TESTIMONIALS</h2>
+              <h2 className="font-display text-4xl sm:text-5xl text-text-primary mt-2">TESTIMONIALS</h2>
             </div>
 
             <div className="max-w-3xl mx-auto relative">
@@ -380,11 +393,11 @@ export default function HomePage() {
                     />
                   ))}
                 </div>
-                <p className="text-white text-lg sm:text-xl leading-relaxed mb-6 min-h-[80px]">
+                <p className="text-text-primary text-lg sm:text-xl leading-relaxed mb-6 min-h-[80px]">
                   &quot;{testimonials[currentTestimonial]?.review}&quot;
                 </p>
                 <div>
-                  <p className="font-semibold text-white">{testimonials[currentTestimonial]?.customer_name}</p>
+                  <p className="font-semibold text-text-primary">{testimonials[currentTestimonial]?.customer_name}</p>
                   <p className="text-text-secondary text-sm">{testimonials[currentTestimonial]?.city}</p>
                 </div>
               </div>
@@ -421,7 +434,7 @@ export default function HomePage() {
       {/* ========== CTA SECTION ========== */}
       <AnimatedSection className="py-24 lg:py-32 bg-bg-surface/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl text-white mb-4">
+          <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl text-text-primary mb-4">
             READY TO <span className="text-accent">GEAR UP?</span>
           </h2>
           <p className="text-text-secondary text-lg mb-8 max-w-2xl mx-auto">

@@ -65,7 +65,7 @@ export default function AdminCategoriesPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="font-display text-3xl text-white">CATEGORIES</h1>
+        <h1 className="font-display text-3xl text-text-primary">CATEGORIES</h1>
         <button onClick={() => { resetForm(); setShowNew(true); }}
           className="flex items-center gap-2 bg-accent text-bg-primary px-5 py-2.5 rounded-xl font-semibold hover:bg-accent-hover transition-colors">
           <Plus size={18} /> Add Category
@@ -76,30 +76,30 @@ export default function AdminCategoriesPage() {
       {(showNew || editing) && (
         <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="font-display text-lg text-white tracking-wider">{editing ? 'EDIT CATEGORY' : 'NEW CATEGORY'}</h2>
-            <button onClick={resetForm} className="p-2 text-text-secondary hover:text-white"><X size={18} /></button>
+            <h2 className="font-display text-lg text-text-primary tracking-wider">{editing ? 'EDIT CATEGORY' : 'NEW CATEGORY'}</h2>
+            <button onClick={resetForm} className="p-2 text-text-secondary hover:text-text-primary"><X size={18} /></button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-sm text-text-secondary mb-1 block">Name *</label>
               <input type="text" value={name} onChange={(e) => { setName(e.target.value); if (!editing) setSlug(generateSlug(e.target.value)); }}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
             </div>
             <div>
               <label className="text-sm text-text-secondary mb-1 block">Slug</label>
               <input type="text" value={slug} onChange={(e) => setSlug(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
             </div>
           </div>
           <div>
             <label className="text-sm text-text-secondary mb-1 block">Description</label>
             <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={2}
-              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50 resize-none" />
+              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50 resize-none" />
           </div>
           <div className="w-32">
             <label className="text-sm text-text-secondary mb-1 block">Display Order</label>
             <input type="number" value={displayOrder} onChange={(e) => setDisplayOrder(e.target.value)}
-              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
           </div>
           <button onClick={() => editing ? handleUpdate(editing) : handleCreate()}
             className="flex items-center gap-2 bg-accent text-bg-primary px-6 py-3 rounded-xl font-semibold hover:bg-accent-hover transition-colors">
@@ -126,7 +126,7 @@ export default function AdminCategoriesPage() {
             <tbody>
               {categories.map(cat => (
                 <tr key={cat.id} className="border-b border-border last:border-0 hover:bg-white/[0.02]">
-                  <td className="px-4 py-3 text-white text-sm font-medium">{cat.name}</td>
+                  <td className="px-4 py-3 text-text-primary text-sm font-medium">{cat.name}</td>
                   <td className="px-4 py-3 text-text-secondary text-sm hidden sm:table-cell">{cat.slug}</td>
                   <td className="px-4 py-3 text-text-secondary text-sm hidden md:table-cell">{cat.product_count ?? '—'}</td>
                   <td className="px-4 py-3 text-text-secondary text-sm hidden md:table-cell">{cat.display_order}</td>

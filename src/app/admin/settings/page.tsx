@@ -40,37 +40,37 @@ export default function AdminSettingsPage() {
 
   return (
     <div className="space-y-6 max-w-3xl">
-      <h1 className="font-display text-3xl text-white">SETTINGS</h1>
+      <h1 className="font-display text-3xl text-text-primary">SETTINGS</h1>
 
       {/* Store Info */}
       <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-        <h2 className="font-display text-lg text-white tracking-wider">STORE INFORMATION</h2>
+        <h2 className="font-display text-lg text-text-primary tracking-wider">STORE INFORMATION</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="text-sm text-text-secondary mb-1 block">Store Name</label>
             <input type="text" value={settings.store_name || ''} onChange={(e) => updateSetting('store_name', e.target.value)}
-              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
           </div>
           <div>
             <label className="text-sm text-text-secondary mb-1 block">Store Email</label>
             <input type="email" value={settings.store_email || ''} onChange={(e) => updateSetting('store_email', e.target.value)}
-              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
           </div>
         </div>
         <div>
           <label className="text-sm text-text-secondary mb-1 block">GST Number</label>
           <input type="text" value={settings.gst_number || ''} onChange={(e) => updateSetting('gst_number', e.target.value)}
-            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
         </div>
       </div>
 
       {/* WhatsApp */}
       <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-        <h2 className="font-display text-lg text-white tracking-wider">WHATSAPP</h2>
+        <h2 className="font-display text-lg text-text-primary tracking-wider">WHATSAPP</h2>
         <div>
           <label className="text-sm text-text-secondary mb-1 block">WhatsApp Number (with country code, no +)</label>
           <input type="text" value={settings.whatsapp_number || ''} onChange={(e) => updateSetting('whatsapp_number', e.target.value)}
-            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50"
+            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50"
             placeholder="919999999999" />
           <p className="text-text-secondary text-xs mt-1">This number is used across all WhatsApp links on the website.</p>
         </div>
@@ -78,44 +78,44 @@ export default function AdminSettingsPage() {
 
       {/* Delivery */}
       <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-        <h2 className="font-display text-lg text-white tracking-wider">DELIVERY CHARGES</h2>
+        <h2 className="font-display text-lg text-text-primary tracking-wider">DELIVERY CHARGES</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="text-sm text-text-secondary mb-1 block">Free Delivery Above (₹)</label>
             <input type="number" value={settings.delivery_free_above || ''} onChange={(e) => updateSetting('delivery_free_above', e.target.value)}
-              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
           </div>
           <div>
             <label className="text-sm text-text-secondary mb-1 block">Delivery Charge (₹)</label>
             <input type="number" value={settings.delivery_charge || ''} onChange={(e) => updateSetting('delivery_charge', e.target.value)}
-              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
           </div>
         </div>
       </div>
 
       {/* Social Media */}
       <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-        <h2 className="font-display text-lg text-white tracking-wider">SOCIAL MEDIA</h2>
+        <h2 className="font-display text-lg text-text-primary tracking-wider">SOCIAL MEDIA</h2>
         <div>
           <label className="text-sm text-text-secondary mb-1 block">Instagram URL</label>
           <input type="url" value={settings.instagram_url || ''} onChange={(e) => updateSetting('instagram_url', e.target.value)}
-            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
         </div>
         <div>
           <label className="text-sm text-text-secondary mb-1 block">YouTube URL</label>
           <input type="url" value={settings.youtube_url || ''} onChange={(e) => updateSetting('youtube_url', e.target.value)}
-            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
         </div>
         <div>
           <label className="text-sm text-text-secondary mb-1 block">Facebook URL</label>
           <input type="url" value={settings.facebook_url || ''} onChange={(e) => updateSetting('facebook_url', e.target.value)}
-            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
         </div>
       </div>
 
       {/* Razorpay (display only) */}
       <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-        <h2 className="font-display text-lg text-white tracking-wider">PAYMENT (RAZORPAY)</h2>
+        <h2 className="font-display text-lg text-text-primary tracking-wider">PAYMENT (RAZORPAY)</h2>
         <div className="bg-accent/5 border border-accent/10 rounded-xl p-4">
           <p className="text-text-secondary text-sm">Razorpay keys are configured via environment variables for security.</p>
           <p className="text-text-secondary text-xs mt-2">
@@ -126,11 +126,11 @@ export default function AdminSettingsPage() {
 
       {/* Footer */}
       <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-        <h2 className="font-display text-lg text-white tracking-wider">FOOTER</h2>
+        <h2 className="font-display text-lg text-text-primary tracking-wider">FOOTER</h2>
         <div>
           <label className="text-sm text-text-secondary mb-1 block">Footer Text</label>
           <input type="text" value={settings.footer_text || ''} onChange={(e) => updateSetting('footer_text', e.target.value)}
-            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
         </div>
       </div>
 

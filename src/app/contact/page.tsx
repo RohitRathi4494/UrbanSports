@@ -39,7 +39,7 @@ export default function ContactPage() {
     <div className="min-h-screen py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="font-display text-5xl sm:text-6xl text-white">GET IN TOUCH</h1>
+          <h1 className="font-display text-5xl sm:text-6xl text-text-primary">GET IN TOUCH</h1>
           <p className="text-text-secondary mt-3 text-lg">We&apos;d love to hear from you. Reach out via any channel below.</p>
         </div>
 
@@ -51,28 +51,28 @@ export default function ContactPage() {
             transition={{ duration: 0.5 }}
           >
             <form onSubmit={handleSubmit} className="bg-bg-surface rounded-2xl border border-border p-8 space-y-5">
-              <h2 className="font-display text-2xl text-white tracking-wider">SEND US A MESSAGE</h2>
+              <h2 className="font-display text-2xl text-text-primary tracking-wider">SEND US A MESSAGE</h2>
               <div>
                 <label className="text-sm text-text-secondary mb-1 block">Full Name *</label>
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)} required
-                  className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white placeholder-text-secondary focus:outline-none focus:border-accent/50" placeholder="Your name" />
+                  className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent/50" placeholder="Your name" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm text-text-secondary mb-1 block">Email *</label>
                   <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required
-                    className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white placeholder-text-secondary focus:outline-none focus:border-accent/50" placeholder="you@example.com" />
+                    className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent/50" placeholder="you@example.com" />
                 </div>
                 <div>
                   <label className="text-sm text-text-secondary mb-1 block">Phone</label>
                   <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white placeholder-text-secondary focus:outline-none focus:border-accent/50" placeholder="+91 99999 99999" />
+                    className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent/50" placeholder="+91 99999 99999" />
                 </div>
               </div>
               <div>
                 <label className="text-sm text-text-secondary mb-1 block">Message *</label>
                 <textarea value={message} onChange={(e) => setMessage(e.target.value)} required rows={5}
-                  className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white placeholder-text-secondary focus:outline-none focus:border-accent/50 resize-none" placeholder="Your message..." />
+                  className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent/50 resize-none" placeholder="Your message..." />
               </div>
               <button type="submit" disabled={loading}
                 className="w-full bg-accent text-bg-primary py-3.5 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-accent-hover transition-colors disabled:opacity-50">
@@ -94,7 +94,7 @@ export default function ContactPage() {
                   {item.icon}
                 </div>
                 <div>
-                  <h3 className="font-display text-lg text-white tracking-wider">{item.title.toUpperCase()}</h3>
+                  <h3 className="font-display text-lg text-text-primary tracking-wider">{item.title.toUpperCase()}</h3>
                   {item.lines.map((line, i) => (
                     <p key={i} className="text-text-secondary text-sm mt-1">{line}</p>
                   ))}

@@ -63,7 +63,7 @@ export default function AdminBannersPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="font-display text-3xl text-white">BANNERS</h1>
+        <h1 className="font-display text-3xl text-text-primary">BANNERS</h1>
         <button onClick={() => { resetForm(); setShowNew(true); }}
           className="flex items-center gap-2 bg-accent text-bg-primary px-5 py-2.5 rounded-xl font-semibold hover:bg-accent-hover transition-colors">
           <Plus size={18} /> Add Banner
@@ -73,38 +73,38 @@ export default function AdminBannersPage() {
       {(showNew || editing) && (
         <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="font-display text-lg text-white tracking-wider">{editing ? 'EDIT BANNER' : 'NEW BANNER'}</h2>
-            <button onClick={resetForm} className="p-2 text-text-secondary hover:text-white"><X size={18} /></button>
+            <h2 className="font-display text-lg text-text-primary tracking-wider">{editing ? 'EDIT BANNER' : 'NEW BANNER'}</h2>
+            <button onClick={resetForm} className="p-2 text-text-secondary hover:text-text-primary"><X size={18} /></button>
           </div>
           <div>
             <label className="text-sm text-text-secondary mb-1 block">Headline *</label>
             <input type="text" value={headline} onChange={(e) => setHeadline(e.target.value)}
-              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50"
+              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50"
               placeholder="SEASON SALE: Up to 40% OFF" />
           </div>
           <div>
             <label className="text-sm text-text-secondary mb-1 block">Subtext</label>
             <input type="text" value={subtext} onChange={(e) => setSubtext(e.target.value)}
-              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50"
+              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50"
               placeholder="Limited time offer!" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="text-sm text-text-secondary mb-1 block">CTA Label</label>
               <input type="text" value={ctaLabel} onChange={(e) => setCtaLabel(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50"
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50"
                 placeholder="Shop Now" />
             </div>
             <div>
               <label className="text-sm text-text-secondary mb-1 block">CTA Link</label>
               <input type="text" value={ctaLink} onChange={(e) => setCtaLink(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50"
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50"
                 placeholder="/products" />
             </div>
             <div>
               <label className="text-sm text-text-secondary mb-1 block">Display Order</label>
               <input type="number" value={displayOrder} onChange={(e) => setDisplayOrder(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
             </div>
           </div>
           <button onClick={() => editing ? handleUpdate(editing) : handleCreate()}

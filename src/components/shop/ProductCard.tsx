@@ -61,7 +61,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
 
             {/* New arrival badge */}
             {product.is_new_arrival && (
-              <div className="absolute top-3 right-3 bg-white/10 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-lg border border-white/20 z-10">
+              <div className="absolute top-3 right-3 bg-white/10 backdrop-blur-sm text-text-primary text-xs font-medium px-2.5 py-1 rounded-lg border border-white/20 z-10">
                 NEW
               </div>
             )}
@@ -69,7 +69,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
             {/* Stock status overlay */}
             {product.stock <= 0 && (
               <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-10">
-                <span className="text-white font-semibold text-sm bg-danger/80 px-4 py-2 rounded-lg">Out of Stock</span>
+                <span className="text-text-primary font-semibold text-sm bg-danger/80 px-4 py-2 rounded-lg">Out of Stock</span>
               </div>
             )}
           </div>
@@ -81,7 +81,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
               {product.brand && (
                 <span className="text-xs text-text-secondary uppercase tracking-widest block mb-1.5">{product.brand}</span>
               )}
-              <h3 className="text-base font-medium text-white line-clamp-2 group-hover:text-accent transition-colors leading-snug min-h-[3rem]">
+              <h3 className="text-base font-medium text-text-primary line-clamp-2 group-hover:text-accent transition-colors leading-snug min-h-[3rem]">
                 {product.name}
               </h3>
               <div className="flex items-center gap-3 mt-3 flex-wrap">

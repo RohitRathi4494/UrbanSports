@@ -1,18 +1,45 @@
 @import "tailwindcss";
 
+:root {
+  --color-bg-primary-val: #0A0A0A;
+  --color-bg-surface-val: #141414;
+  --color-bg-surface-light-val: #1A1A1A;
+  --color-accent-val: #C8F53A;
+  --color-accent-hover-val: #b8e52a;
+  --color-text-primary-val: #FFFFFF;
+  --color-text-secondary-val: #999999;
+  --color-border-val: rgba(255, 255, 255, 0.1);
+  --color-border-accent-val: rgba(200, 245, 58, 0.3);
+  --color-danger-val: #FF4444;
+  --color-success-val: #00CC66;
+  --color-warning-val: #FFB800;
+}
+
+:root.light {
+  --color-bg-primary-val: #F8F9FA;
+  --color-bg-surface-val: #FFFFFF;
+  --color-bg-surface-light-val: #E9ECEF;
+  --color-accent-val: #A8D116; /* slightly darker for contrast */
+  --color-accent-hover-val: #8EBA0C;
+  --color-text-primary-val: #111111;
+  --color-text-secondary-val: #666666;
+  --color-border-val: rgba(0, 0, 0, 0.1);
+  --color-border-accent-val: rgba(168, 209, 22, 0.3);
+}
+
 @theme {
-  --color-bg-primary: #0A0A0A;
-  --color-bg-surface: #141414;
-  --color-bg-surface-light: #1A1A1A;
-  --color-accent: #C8F53A;
-  --color-accent-hover: #b8e52a;
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #999999;
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-border-accent: rgba(200, 245, 58, 0.3);
-  --color-danger: #FF4444;
-  --color-success: #00CC66;
-  --color-warning: #FFB800;
+  --color-bg-primary: var(--color-bg-primary-val);
+  --color-bg-surface: var(--color-bg-surface-val);
+  --color-bg-surface-light: var(--color-bg-surface-light-val);
+  --color-accent: var(--color-accent-val);
+  --color-accent-hover: var(--color-accent-hover-val);
+  --color-text-primary: var(--color-text-primary-val);
+  --color-text-secondary: var(--color-text-secondary-val);
+  --color-border: var(--color-border-val);
+  --color-border-accent: var(--color-border-accent-val);
+  --color-danger: var(--color-danger-val);
+  --color-success: var(--color-success-val);
+  --color-warning: var(--color-warning-val);
   --font-display: 'Bebas Neue', sans-serif;
   --font-body: 'DM Sans', sans-serif;
 }

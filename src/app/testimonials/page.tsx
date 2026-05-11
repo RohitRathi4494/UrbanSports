@@ -20,7 +20,7 @@ export default function TestimonialsPage() {
     <div className="min-h-screen py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="font-display text-5xl sm:text-6xl text-white">CUSTOMER REVIEWS</h1>
+          <h1 className="font-display text-5xl sm:text-6xl text-text-primary">CUSTOMER REVIEWS</h1>
           <p className="text-text-secondary mt-3 text-lg">What our customers say about Urban Sports Studio</p>
         </div>
 
@@ -51,7 +51,7 @@ export default function TestimonialsPage() {
                     {t.customer_name.charAt(0)}
                   </div>
                   <div>
-                    <p className="text-white font-medium text-sm">{t.customer_name}</p>
+                    <p className="text-text-primary font-medium text-sm">{t.customer_name}</p>
                     <p className="text-text-secondary text-xs">{t.city}</p>
                   </div>
                 </div>

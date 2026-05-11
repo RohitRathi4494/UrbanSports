@@ -53,7 +53,7 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="font-display text-3xl text-white">DASHBOARD</h1>
+        <h1 className="font-display text-3xl text-text-primary">DASHBOARD</h1>
         <p className="text-text-secondary mt-1">Welcome back, Admin. Here&apos;s your store overview.</p>
       </div>
 
@@ -70,7 +70,7 @@ export default function AdminDashboard() {
               {card.icon}
             </div>
             <p className="text-text-secondary text-sm">{card.label}</p>
-            <p className="font-display text-2xl text-white mt-1">{card.value}</p>
+            <p className="font-display text-2xl text-text-primary mt-1">{card.value}</p>
             <p className="text-text-secondary text-xs mt-1">{card.sub}</p>
           </div>
         ))}
@@ -80,7 +80,7 @@ export default function AdminDashboard() {
         {/* Recent Orders */}
         <div className="bg-bg-surface rounded-2xl border border-border p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-display text-lg text-white tracking-wider">RECENT ORDERS</h2>
+            <h2 className="font-display text-lg text-text-primary tracking-wider">RECENT ORDERS</h2>
             <Link href="/admin/orders" className="text-accent text-sm hover:underline">View All</Link>
           </div>
           {recentOrders.length === 0 ? (
@@ -91,7 +91,7 @@ export default function AdminDashboard() {
                 <Link key={order.id as string} href={`/admin/orders/${order.id}`}
                   className="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors">
                   <div>
-                    <p className="text-white text-sm font-medium">{order.order_number as string}</p>
+                    <p className="text-text-primary text-sm font-medium">{order.order_number as string}</p>
                     <p className="text-text-secondary text-xs">{order.customer_name as string}</p>
                   </div>
                   <div className="text-right">
@@ -113,7 +113,7 @@ export default function AdminDashboard() {
         {/* Low Stock Alerts */}
         <div className="bg-bg-surface rounded-2xl border border-border p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-display text-lg text-white tracking-wider flex items-center gap-2">
+            <h2 className="font-display text-lg text-text-primary tracking-wider flex items-center gap-2">
               <AlertTriangle size={18} className="text-warning" />
               LOW STOCK ALERTS
             </h2>
@@ -124,7 +124,7 @@ export default function AdminDashboard() {
             <div className="space-y-3">
               {lowStock.map((item) => (
                 <div key={item.id} className="flex items-center justify-between p-3 rounded-xl bg-warning/5 border border-warning/10">
-                  <p className="text-white text-sm truncate flex-1 mr-4">{item.name}</p>
+                  <p className="text-text-primary text-sm truncate flex-1 mr-4">{item.name}</p>
                   <span className="text-warning text-sm font-bold whitespace-nowrap">{item.stock} left</span>
                 </div>
               ))}
@@ -146,7 +146,7 @@ export default function AdminDashboard() {
             <div className="w-10 h-10 mx-auto bg-accent/10 rounded-xl flex items-center justify-center text-accent mb-2 group-hover:bg-accent/20 transition-colors">
               {action.icon}
             </div>
-            <p className="text-white text-sm font-medium">{action.label}</p>
+            <p className="text-text-primary text-sm font-medium">{action.label}</p>
           </Link>
         ))}
       </div>

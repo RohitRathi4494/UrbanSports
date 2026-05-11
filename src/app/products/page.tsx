@@ -73,7 +73,7 @@ function ProductsContent() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="font-display text-4xl sm:text-5xl text-white">
+          <h1 className="font-display text-4xl sm:text-5xl text-text-primary">
             {search ? `SEARCH: "${search.toUpperCase()}"` : 'ALL PRODUCTS'}
           </h1>
           <p className="text-text-secondary mt-2">{total} products found</p>
@@ -84,7 +84,7 @@ function ProductsContent() {
           <div className="hidden lg:block w-64 flex-shrink-0">
             <div className="sticky top-24 space-y-6">
               <div className="flex items-center justify-between">
-                <h3 className="font-display text-lg text-white tracking-wider">FILTERS</h3>
+                <h3 className="font-display text-lg text-text-primary tracking-wider">FILTERS</h3>
                 {hasFilters && (
                   <button onClick={clearFilters} className="text-accent text-xs hover:underline">Clear All</button>
                 )}
@@ -92,11 +92,11 @@ function ProductsContent() {
 
               {/* Category */}
               <div>
-                <h4 className="text-sm font-medium text-white mb-3">Category</h4>
+                <h4 className="text-sm font-medium text-text-primary mb-3">Category</h4>
                 <div className="space-y-2">
                   <button
                     onClick={() => { setCategory(''); setPage(1); }}
-                    className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${!category ? 'bg-accent/10 text-accent' : 'text-text-secondary hover:text-white hover:bg-white/5'}`}
+                    className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${!category ? 'bg-accent/10 text-accent' : 'text-text-secondary hover:text-text-primary hover:bg-white/5'}`}
                   >
                     All Categories
                   </button>
@@ -104,7 +104,7 @@ function ProductsContent() {
                     <button
                       key={cat.id}
                       onClick={() => { setCategory(cat.slug); setPage(1); }}
-                      className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${category === cat.slug ? 'bg-accent/10 text-accent' : 'text-text-secondary hover:text-white hover:bg-white/5'}`}
+                      className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${category === cat.slug ? 'bg-accent/10 text-accent' : 'text-text-secondary hover:text-text-primary hover:bg-white/5'}`}
                     >
                       {cat.name}
                     </button>
@@ -115,11 +115,11 @@ function ProductsContent() {
               {/* Brand */}
               {brands.length > 0 && (
                 <div>
-                  <h4 className="text-sm font-medium text-white mb-3">Brand</h4>
+                  <h4 className="text-sm font-medium text-text-primary mb-3">Brand</h4>
                   <div className="space-y-2">
                     <button
                       onClick={() => { setBrand(''); setPage(1); }}
-                      className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${!brand ? 'bg-accent/10 text-accent' : 'text-text-secondary hover:text-white hover:bg-white/5'}`}
+                      className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${!brand ? 'bg-accent/10 text-accent' : 'text-text-secondary hover:text-text-primary hover:bg-white/5'}`}
                     >
                       All Brands
                     </button>
@@ -127,7 +127,7 @@ function ProductsContent() {
                       <button
                         key={b}
                         onClick={() => { setBrand(b); setPage(1); }}
-                        className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${brand === b ? 'bg-accent/10 text-accent' : 'text-text-secondary hover:text-white hover:bg-white/5'}`}
+                        className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${brand === b ? 'bg-accent/10 text-accent' : 'text-text-secondary hover:text-text-primary hover:bg-white/5'}`}
                       >
                         {b}
                       </button>
@@ -138,21 +138,21 @@ function ProductsContent() {
 
               {/* Price Range */}
               <div>
-                <h4 className="text-sm font-medium text-white mb-3">Price Range</h4>
+                <h4 className="text-sm font-medium text-text-primary mb-3">Price Range</h4>
                 <div className="flex gap-2">
                   <input
                     type="number"
                     placeholder="Min"
                     value={minPrice}
                     onChange={(e) => { setMinPrice(e.target.value); setPage(1); }}
-                    className="w-full bg-bg-surface border border-border rounded-lg px-3 py-2 text-sm text-white placeholder-text-secondary focus:outline-none focus:border-accent/50"
+                    className="w-full bg-bg-surface border border-border rounded-lg px-3 py-2 text-sm text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent/50"
                   />
                   <input
                     type="number"
                     placeholder="Max"
                     value={maxPrice}
                     onChange={(e) => { setMaxPrice(e.target.value); setPage(1); }}
-                    className="w-full bg-bg-surface border border-border rounded-lg px-3 py-2 text-sm text-white placeholder-text-secondary focus:outline-none focus:border-accent/50"
+                    className="w-full bg-bg-surface border border-border rounded-lg px-3 py-2 text-sm text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent/50"
                   />
                 </div>
               </div>
@@ -174,7 +174,7 @@ function ProductsContent() {
             <div className="flex items-center justify-between mb-6 gap-4">
               <button
                 onClick={() => setFiltersOpen(true)}
-                className="lg:hidden flex items-center gap-2 bg-bg-surface border border-border rounded-xl px-4 py-2.5 text-sm text-white"
+                className="lg:hidden flex items-center gap-2 bg-bg-surface border border-border rounded-xl px-4 py-2.5 text-sm text-text-primary"
               >
                 <Filter size={16} /> Filters {hasFilters && <span className="w-2 h-2 bg-accent rounded-full" />}
               </button>
@@ -184,7 +184,7 @@ function ProductsContent() {
                   <select
                     value={sort}
                     onChange={(e) => { setSort(e.target.value); setPage(1); }}
-                    className="appearance-none bg-bg-surface border border-border rounded-xl px-4 py-2.5 pr-10 text-sm text-white focus:outline-none focus:border-accent/50 cursor-pointer"
+                    className="appearance-none bg-bg-surface border border-border rounded-xl px-4 py-2.5 pr-10 text-sm text-text-primary focus:outline-none focus:border-accent/50 cursor-pointer"
                   >
                     <option value="newest">Newest</option>
                     <option value="price_asc">Price: Low → High</option>
@@ -206,7 +206,7 @@ function ProductsContent() {
             ) : products.length === 0 ? (
               <div className="text-center py-20">
                 <div className="text-6xl mb-4">🏏</div>
-                <h3 className="font-display text-2xl text-white mb-2">NO PRODUCTS FOUND</h3>
+                <h3 className="font-display text-2xl text-text-primary mb-2">NO PRODUCTS FOUND</h3>
                 <p className="text-text-secondary mb-6">Try adjusting your filters or search terms</p>
                 <button onClick={clearFilters} className="text-accent hover:underline">Clear all filters</button>
               </div>
@@ -225,7 +225,7 @@ function ProductsContent() {
                       <button
                         key={p}
                         onClick={() => { setPage(p); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                        className={`w-10 h-10 rounded-xl text-sm font-medium transition-colors ${p === page ? 'bg-accent text-bg-primary' : 'bg-bg-surface border border-border text-white hover:border-accent/30'}`}
+                        className={`w-10 h-10 rounded-xl text-sm font-medium transition-colors ${p === page ? 'bg-accent text-bg-primary' : 'bg-bg-surface border border-border text-text-primary hover:border-accent/30'}`}
                       >
                         {p}
                       </button>
@@ -248,18 +248,18 @@ function ProductsContent() {
             className="fixed top-0 left-0 bottom-0 w-80 bg-bg-surface z-50 lg:hidden overflow-y-auto p-6"
           >
             <div className="flex items-center justify-between mb-6">
-              <h3 className="font-display text-xl text-white">FILTERS</h3>
+              <h3 className="font-display text-xl text-text-primary">FILTERS</h3>
               <button onClick={() => setFiltersOpen(false)} className="p-2 text-white/70"><X size={20} /></button>
             </div>
             {/* Same filter content as desktop */}
             <div className="space-y-6">
               <div>
-                <h4 className="text-sm font-medium text-white mb-3">Category</h4>
+                <h4 className="text-sm font-medium text-text-primary mb-3">Category</h4>
                 {categories.map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => { setCategory(cat.slug); setPage(1); setFiltersOpen(false); }}
-                    className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${category === cat.slug ? 'bg-accent/10 text-accent' : 'text-text-secondary hover:text-white'}`}
+                    className={`block w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${category === cat.slug ? 'bg-accent/10 text-accent' : 'text-text-secondary hover:text-text-primary'}`}
                   >
                     {cat.name}
                   </button>

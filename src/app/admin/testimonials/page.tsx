@@ -65,7 +65,7 @@ export default function AdminTestimonialsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="font-display text-3xl text-white">TESTIMONIALS</h1>
+        <h1 className="font-display text-3xl text-text-primary">TESTIMONIALS</h1>
         <button onClick={() => { resetForm(); setShowNew(true); }}
           className="flex items-center gap-2 bg-accent text-bg-primary px-5 py-2.5 rounded-xl font-semibold hover:bg-accent-hover transition-colors">
           <Plus size={18} /> Add Testimonial
@@ -75,19 +75,19 @@ export default function AdminTestimonialsPage() {
       {(showNew || editing) && (
         <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="font-display text-lg text-white tracking-wider">{editing ? 'EDIT TESTIMONIAL' : 'NEW TESTIMONIAL'}</h2>
-            <button onClick={resetForm} className="p-2 text-text-secondary hover:text-white"><X size={18} /></button>
+            <h2 className="font-display text-lg text-text-primary tracking-wider">{editing ? 'EDIT TESTIMONIAL' : 'NEW TESTIMONIAL'}</h2>
+            <button onClick={resetForm} className="p-2 text-text-secondary hover:text-text-primary"><X size={18} /></button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="text-sm text-text-secondary mb-1 block">Customer Name *</label>
               <input type="text" value={customerName} onChange={(e) => setCustomerName(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" placeholder="Arjun Mehta" />
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" placeholder="Arjun Mehta" />
             </div>
             <div>
               <label className="text-sm text-text-secondary mb-1 block">City</label>
               <input type="text" value={city} onChange={(e) => setCity(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" placeholder="Delhi" />
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" placeholder="Delhi" />
             </div>
             <div>
               <label className="text-sm text-text-secondary mb-1 block">Rating</label>
@@ -103,7 +103,7 @@ export default function AdminTestimonialsPage() {
           <div>
             <label className="text-sm text-text-secondary mb-1 block">Review *</label>
             <textarea value={review} onChange={(e) => setReview(e.target.value)} rows={3}
-              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50 resize-none" />
+              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50 resize-none" />
           </div>
           <button onClick={() => editing ? handleUpdate(editing) : handleCreate()}
             className="flex items-center gap-2 bg-accent text-bg-primary px-6 py-3 rounded-xl font-semibold hover:bg-accent-hover transition-colors">
@@ -126,7 +126,7 @@ export default function AdminTestimonialsPage() {
                     ))}
                   </div>
                   <p className="text-white/80 text-sm mb-2">&quot;{t.review}&quot;</p>
-                  <p className="text-white text-sm font-medium">{t.customer_name} <span className="text-text-secondary font-normal">— {t.city}</span></p>
+                  <p className="text-text-primary text-sm font-medium">{t.customer_name} <span className="text-text-secondary font-normal">— {t.city}</span></p>
                 </div>
                 <div className="flex gap-1 flex-shrink-0">
                   <button onClick={() => startEdit(t)} className="p-2 text-text-secondary hover:text-accent transition-colors"><Edit size={16} /></button>

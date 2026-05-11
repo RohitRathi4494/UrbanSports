@@ -87,27 +87,27 @@ export default function AdminNewProductPage() {
   return (
     <div className="space-y-6 max-w-4xl">
       <div className="flex items-center gap-4">
-        <Link href="/admin/products" className="p-2 text-text-secondary hover:text-white transition-colors">
+        <Link href="/admin/products" className="p-2 text-text-secondary hover:text-text-primary transition-colors">
           <ArrowLeft size={20} />
         </Link>
-        <h1 className="font-display text-3xl text-white">ADD NEW PRODUCT</h1>
+        <h1 className="font-display text-3xl text-text-primary">ADD NEW PRODUCT</h1>
       </div>
 
       <div className="space-y-6">
         {/* Basic Info */}
         <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-          <h2 className="font-display text-lg text-white tracking-wider">BASIC INFORMATION</h2>
+          <h2 className="font-display text-lg text-text-primary tracking-wider">BASIC INFORMATION</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="text-sm text-text-secondary mb-1 block">Product Name *</label>
               <input type="text" value={name} onChange={(e) => setName(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50"
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50"
                 placeholder="SG Sierra 350 English Willow Cricket Bat" />
             </div>
             <div>
               <label className="text-sm text-text-secondary mb-1 block">Slug</label>
               <input type="text" value={slug} onChange={(e) => setSlug(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50"
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50"
                 placeholder="sg-sierra-350-english-willow-bat" />
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function AdminNewProductPage() {
             <div>
               <label className="text-sm text-text-secondary mb-1 block">Category</label>
               <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50">
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50">
                 <option value="">Select category</option>
                 {categories.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
               </select>
@@ -123,13 +123,13 @@ export default function AdminNewProductPage() {
             <div>
               <label className="text-sm text-text-secondary mb-1 block">Brand</label>
               <input type="text" value={brand} onChange={(e) => setBrand(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50"
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50"
                 placeholder="SG" />
             </div>
             <div>
               <label className="text-sm text-text-secondary mb-1 block">SKU</label>
               <input type="text" value={sku} onChange={(e) => setSku(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50"
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50"
                 placeholder="SG-SIR-350-EW" />
             </div>
           </div>
@@ -137,21 +137,21 @@ export default function AdminNewProductPage() {
 
         {/* Description */}
         <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-          <h2 className="font-display text-lg text-white tracking-wider">DESCRIPTION</h2>
+          <h2 className="font-display text-lg text-text-primary tracking-wider">DESCRIPTION</h2>
           <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={6}
-            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50 resize-none"
+            className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50 resize-none"
             placeholder="Product description (supports HTML)..." />
         </div>
 
         {/* Features */}
         <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-          <h2 className="font-display text-lg text-white tracking-wider">KEY FEATURES</h2>
+          <h2 className="font-display text-lg text-text-primary tracking-wider">KEY FEATURES</h2>
           {features.map((f, i) => (
             <div key={i} className="flex gap-2">
               <input type="text" value={f} onChange={(e) => {
                 const copy = [...features]; copy[i] = e.target.value; setFeatures(copy);
               }}
-                className="flex-1 bg-bg-primary border border-border rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-accent/50"
+                className="flex-1 bg-bg-primary border border-border rounded-xl px-4 py-2.5 text-text-primary text-sm focus:outline-none focus:border-accent/50"
                 placeholder={`Feature ${i + 1}`} />
               <button onClick={() => setFeatures(features.filter((_, j) => j !== i))}
                 className="p-2 text-text-secondary hover:text-danger"><X size={16} /></button>
@@ -163,18 +163,18 @@ export default function AdminNewProductPage() {
 
         {/* Specifications */}
         <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-          <h2 className="font-display text-lg text-white tracking-wider">SPECIFICATIONS</h2>
+          <h2 className="font-display text-lg text-text-primary tracking-wider">SPECIFICATIONS</h2>
           {specs.map((s, i) => (
             <div key={i} className="flex gap-2">
               <input type="text" value={s.key} onChange={(e) => {
                 const copy = [...specs]; copy[i] = { ...copy[i], key: e.target.value }; setSpecs(copy);
               }}
-                className="flex-1 bg-bg-primary border border-border rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-accent/50"
+                className="flex-1 bg-bg-primary border border-border rounded-xl px-4 py-2.5 text-text-primary text-sm focus:outline-none focus:border-accent/50"
                 placeholder="Key (e.g. Material)" />
               <input type="text" value={s.value} onChange={(e) => {
                 const copy = [...specs]; copy[i] = { ...copy[i], value: e.target.value }; setSpecs(copy);
               }}
-                className="flex-1 bg-bg-primary border border-border rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-accent/50"
+                className="flex-1 bg-bg-primary border border-border rounded-xl px-4 py-2.5 text-text-primary text-sm focus:outline-none focus:border-accent/50"
                 placeholder="Value (e.g. English Willow)" />
               <button onClick={() => setSpecs(specs.filter((_, j) => j !== i))}
                 className="p-2 text-text-secondary hover:text-danger"><X size={16} /></button>
@@ -186,29 +186,29 @@ export default function AdminNewProductPage() {
 
         {/* Pricing & Stock */}
         <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-          <h2 className="font-display text-lg text-white tracking-wider">PRICING & INVENTORY</h2>
+          <h2 className="font-display text-lg text-text-primary tracking-wider">PRICING & INVENTORY</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div>
               <label className="text-sm text-text-secondary mb-1 block">Selling Price (₹) *</label>
               <input type="number" value={price} onChange={(e) => setPrice(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50"
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50"
                 placeholder="8999" />
             </div>
             <div>
               <label className="text-sm text-text-secondary mb-1 block">MRP (₹) *</label>
               <input type="number" value={mrp} onChange={(e) => setMrp(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50"
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50"
                 placeholder="12999" />
             </div>
             <div>
               <label className="text-sm text-text-secondary mb-1 block">Stock</label>
               <input type="number" value={stock} onChange={(e) => setStock(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
             </div>
             <div>
               <label className="text-sm text-text-secondary mb-1 block">Low Stock Alert</label>
               <input type="number" value={lowStockThreshold} onChange={(e) => setLowStockThreshold(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50" />
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50" />
             </div>
           </div>
           {price && mrp && parseFloat(mrp) > parseFloat(price) && (
@@ -220,12 +220,12 @@ export default function AdminNewProductPage() {
 
         {/* Status & Flags */}
         <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-          <h2 className="font-display text-lg text-white tracking-wider">STATUS & VISIBILITY</h2>
+          <h2 className="font-display text-lg text-text-primary tracking-wider">STATUS & VISIBILITY</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="text-sm text-text-secondary mb-1 block">Status</label>
               <select value={status} onChange={(e) => setStatus(e.target.value)}
-                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50">
+                className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50">
                 <option value="active">Active</option>
                 <option value="inactive">Inactive</option>
                 <option value="out_of_stock">Out of Stock</option>
@@ -249,24 +249,24 @@ export default function AdminNewProductPage() {
           <div>
             <label className="text-sm text-text-secondary mb-1 block">Tags (comma-separated)</label>
             <input type="text" value={tags} onChange={(e) => setTags(e.target.value)}
-              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50"
+              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50"
               placeholder="english willow, premium, bat" />
           </div>
         </div>
 
         {/* SEO */}
         <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-          <h2 className="font-display text-lg text-white tracking-wider">SEO</h2>
+          <h2 className="font-display text-lg text-text-primary tracking-wider">SEO</h2>
           <div>
             <label className="text-sm text-text-secondary mb-1 block">Meta Title</label>
             <input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)}
-              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50"
+              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50"
               placeholder={`${name || 'Product Name'} | Urban Sports`} />
           </div>
           <div>
             <label className="text-sm text-text-secondary mb-1 block">Meta Description</label>
             <textarea value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} rows={2}
-              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50 resize-none"
+              className="w-full bg-bg-primary border border-border rounded-xl px-4 py-3 text-text-primary focus:outline-none focus:border-accent/50 resize-none"
               placeholder="Brief description for search engines..." />
           </div>
         </div>
@@ -278,7 +278,7 @@ export default function AdminNewProductPage() {
             <Save size={18} /> {saving ? 'Saving...' : 'Save Product'}
           </button>
           <Link href="/admin/products"
-            className="flex items-center gap-2 border border-border text-white px-8 py-3.5 rounded-xl font-medium hover:bg-white/5 transition-colors">
+            className="flex items-center gap-2 border border-border text-text-primary px-8 py-3.5 rounded-xl font-medium hover:bg-white/5 transition-colors">
             Cancel
           </Link>
         </div>

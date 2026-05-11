@@ -14,7 +14,7 @@ export default function AboutPage() {
         
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <h1 className="font-display text-6xl sm:text-7xl text-white mb-4">
+            <h1 className="font-display text-6xl sm:text-7xl text-text-primary mb-4">
               ABOUT <span className="text-accent">URBAN SPORTS STUDIO</span>
             </h1>
             <p className="text-text-secondary text-xl leading-relaxed max-w-2xl mx-auto">
@@ -29,7 +29,7 @@ export default function AboutPage() {
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="font-display text-4xl text-white mb-6">OUR STORY</h2>
+            <h2 className="font-display text-4xl text-text-primary mb-6">OUR STORY</h2>
             <div className="space-y-4 text-text-secondary leading-relaxed">
               <p>
                 Urban Sports Studio was founded in 2024 by a group of cricket enthusiasts who noticed a gap in the market — 
@@ -55,7 +55,7 @@ export default function AboutPage() {
       {/* Values */}
       <section className="py-20 bg-bg-surface/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-4xl text-white text-center mb-12">WHAT WE STAND FOR</h2>
+          <h2 className="font-display text-4xl text-text-primary text-center mb-12">WHAT WE STAND FOR</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: <Shield size={32} />, title: 'Authenticity', desc: 'Every product we sell is 100% genuine, sourced directly from authorized brand dealers.' },
@@ -74,7 +74,7 @@ export default function AboutPage() {
                 <div className="w-16 h-16 mx-auto bg-accent/10 rounded-2xl flex items-center justify-center text-accent mb-4">
                   {item.icon}
                 </div>
-                <h3 className="font-display text-xl text-white mb-2 tracking-wide">{item.title.toUpperCase()}</h3>
+                <h3 className="font-display text-xl text-text-primary mb-2 tracking-wide">{item.title.toUpperCase()}</h3>
                 <p className="text-text-secondary text-sm">{item.desc}</p>
               </motion.div>
             ))}
@@ -85,7 +85,7 @@ export default function AboutPage() {
       {/* CTA */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-5xl text-white mb-4">
+          <h2 className="font-display text-5xl text-text-primary mb-4">
             READY TO <span className="text-accent">PLAY BOLD?</span>
           </h2>
           <p className="text-text-secondary text-lg mb-8">

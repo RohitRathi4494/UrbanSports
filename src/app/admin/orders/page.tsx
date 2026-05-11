@@ -52,11 +52,11 @@ export default function AdminOrdersPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-4">
-        <h1 className="font-display text-3xl text-white">ORDERS</h1>
+        <h1 className="font-display text-3xl text-text-primary">ORDERS</h1>
         <div className="flex gap-2 flex-wrap">
           {['', 'pending', 'confirmed', 'packed', 'shipped', 'delivered', 'cancelled'].map(s => (
             <button key={s} onClick={() => setFilter(s)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${filter === s ? 'bg-accent text-bg-primary' : 'bg-bg-surface border border-border text-text-secondary hover:text-white'}`}>
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${filter === s ? 'bg-accent text-bg-primary' : 'bg-bg-surface border border-border text-text-secondary hover:text-text-primary'}`}>
               {s ? s.charAt(0).toUpperCase() + s.slice(1) : 'All'}
             </button>
           ))}
@@ -86,11 +86,11 @@ export default function AdminOrdersPage() {
                 {orders.map((order) => (
                   <tr key={order.id} className="border-b border-border last:border-0 hover:bg-white/[0.02]">
                     <td className="px-4 py-3">
-                      <p className="text-white text-sm font-mono">{order.order_number}</p>
+                      <p className="text-text-primary text-sm font-mono">{order.order_number}</p>
                       <p className="text-text-secondary text-xs sm:hidden">{order.customer_name}</p>
                     </td>
                     <td className="px-4 py-3 hidden sm:table-cell">
-                      <p className="text-white text-sm">{order.customer_name}</p>
+                      <p className="text-text-primary text-sm">{order.customer_name}</p>
                       <p className="text-text-secondary text-xs">{order.customer_phone}</p>
                     </td>
                     <td className="px-4 py-3 text-text-secondary text-sm hidden md:table-cell">

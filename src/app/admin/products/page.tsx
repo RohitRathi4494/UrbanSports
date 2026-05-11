@@ -37,7 +37,7 @@ export default function AdminProductsPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between flex-wrap gap-4">
-        <h1 className="font-display text-3xl text-white">PRODUCTS</h1>
+        <h1 className="font-display text-3xl text-text-primary">PRODUCTS</h1>
         <Link href="/admin/products/new"
           className="flex items-center gap-2 bg-accent text-bg-primary px-5 py-2.5 rounded-xl font-semibold hover:bg-accent-hover transition-colors">
           <Plus size={18} /> Add Product
@@ -47,7 +47,7 @@ export default function AdminProductsPage() {
       <div className="relative">
         <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary" />
         <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search products..." className="w-full bg-bg-surface border border-border rounded-xl pl-12 pr-4 py-3 text-white placeholder-text-secondary focus:outline-none focus:border-accent/50" />
+          placeholder="Search products..." className="w-full bg-bg-surface border border-border rounded-xl pl-12 pr-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none focus:border-accent/50" />
       </div>
 
       {loading ? (
@@ -75,7 +75,7 @@ export default function AdminProductsPage() {
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-bg-surface-light rounded-lg flex-shrink-0 flex items-center justify-center text-white/20 text-xs">IMG</div>
                         <div>
-                          <p className="text-white text-sm font-medium truncate max-w-[200px]">{product.name}</p>
+                          <p className="text-text-primary text-sm font-medium truncate max-w-[200px]">{product.name}</p>
                           <p className="text-text-secondary text-xs">{product.brand} • {product.sku}</p>
                         </div>
                       </div>
