@@ -17,6 +17,7 @@ export default function ProductDetailPage() {
   const [related, setRelated] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
+  const [selectedImage, setSelectedImage] = useState(0);
   const [activeTab, setActiveTab] = useState<'description' | 'specs' | 'features'>('description');
   const addItem = useCartStore((s) => s.addItem);
 
@@ -106,14 +107,24 @@ export default function ProductDetailPage() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
+            className="space-y-4"
           >
             <div className="aspect-square bg-bg-surface rounded-3xl border border-border overflow-hidden flex items-center justify-center relative">
-              <div className="text-center p-8">
-                <svg className="w-32 h-32 mx-auto mb-4 text-white/10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                </svg>
-                <span className="text-white/30 text-lg">{product.brand} — {product.name}</span>
-              </div>
+              {product.images && product.images.length > 0 ? (
+                <img 
+                  src={product.images[selectedImage || 0]} 
+                  alt={product.name}
+                  className="w-full h-full object-contain"
+                />
+              ) : (
+                <div className="text-center p-8">
+                  <svg className="w-32 h-32 mx-auto mb-4 text-white/10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={0.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  </svg>
+                  <span className="text-white/30 text-lg">{product.brand} — {product.name}</span>
+                </div>
+              )}
+              
               {discount > 0 && (
                 <div className="absolute top-4 left-4 bg-accent text-bg-primary text-sm font-bold px-3 py-1.5 rounded-xl">
                   -{discount}% OFF
@@ -125,6 +136,23 @@ export default function ProductDetailPage() {
                 </div>
               )}
             </div>
+
+            {/* Thumbnails */}
+            {product.images && product.images.length > 1 && (
+              <div className="grid grid-cols-6 gap-3">
+                {product.images.map((img, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSelectedImage(i)}
+                    className={`aspect-square rounded-xl border-2 overflow-hidden transition-all ${
+                      (selectedImage || 0) === i ? 'border-accent' : 'border-border hover:border-white/20'
+                    }`}
+                  >
+                    <img src={img} alt={`${product.name} ${i + 1}`} className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
           </motion.div>
 
           {/* Info */}

@@ -39,17 +39,25 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
     >
-      <Link href={`/product/${product.slug}`} className="group block h-full">
+      <Link href={`/product/${product.slug || product.id}`} className="group block h-full">
         <div className="product-card bg-bg-surface rounded-2xl border border-border overflow-hidden hover:border-accent/30 transition-all duration-300 hover:shadow-xl hover:shadow-accent/5 flex flex-col h-full">
           {/* Image */}
           <div className="relative aspect-square overflow-hidden bg-bg-surface-light flex-shrink-0">
             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-bg-surface-light to-bg-surface product-image transition-transform duration-500">
-              <div className="text-center p-6">
-                <svg className="w-16 h-16 mx-auto mb-2 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                </svg>
-                <span className="text-xs text-white/30 font-medium">{product.brand}</span>
-              </div>
+              {product.images && product.images.length > 0 ? (
+                <img 
+                  src={product.images[0]} 
+                  alt={product.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              ) : (
+                <div className="text-center p-6">
+                  <svg className="w-16 h-16 mx-auto mb-2 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  </svg>
+                  <span className="text-xs text-white/30 font-medium">{product.brand}</span>
+                </div>
+              )}
             </div>
 
             {/* Discount badge */}
