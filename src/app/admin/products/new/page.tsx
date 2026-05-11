@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Plus, X, Save } from 'lucide-react';
+import { ArrowLeft, Plus, X, Save, Upload } from 'lucide-react';
 import { Category, generateSlug } from '@/lib/utils';
+import { CldUploadWidget } from 'next-cloudinary';
 import toast from 'react-hot-toast';
 
 export default function AdminNewProductPage() {
@@ -158,25 +159,50 @@ export default function AdminNewProductPage() {
 
         {/* Images */}
         <div className="bg-bg-surface rounded-2xl border border-border p-6 space-y-4">
-          <h2 className="font-display text-lg text-text-primary tracking-wider">PRODUCT IMAGES</h2>
-          <p className="text-sm text-text-secondary">Provide image URLs (e.g. /products/bat1.png or https://...). Minimum 1, Maximum 6.</p>
-          {images.map((img, i) => (
-            <div key={i} className="flex gap-2">
-              <input type="text" value={img} onChange={(e) => {
-                const copy = [...images]; copy[i] = e.target.value; setImages(copy);
-              }}
-                className="flex-1 bg-bg-primary border border-border rounded-xl px-4 py-2.5 text-text-primary text-sm focus:outline-none focus:border-accent/50"
-                placeholder="Image URL" />
-              {images.length > 1 && (
-                <button onClick={() => setImages(images.filter((_, j) => j !== i))}
-                  className="p-2 text-text-secondary hover:text-danger"><X size={16} /></button>
-              )}
+          <div className="flex sm:items-center justify-between flex-col sm:flex-row gap-4">
+            <div>
+              <h2 className="font-display text-lg text-text-primary tracking-wider">PRODUCT IMAGES</h2>
+              <p className="text-sm text-text-secondary">Upload product images (Minimum 1, Maximum 6).</p>
             </div>
-          ))}
-          {images.length < 6 && (
-            <button onClick={() => setImages([...images, ''])}
-              className="flex items-center gap-1 text-accent text-sm hover:underline"><Plus size={14} /> Add Another Image</button>
-          )}
+            {images.length < 6 && (
+              <CldUploadWidget 
+                uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
+                options={{ maxFiles: 6 - images.length, clientAllowedFormats: ['jpg', 'png', 'jpeg', 'webp'] }}
+                onSuccess={(result) => {
+                  if (result.info && typeof result.info === 'object' && 'secure_url' in result.info) {
+                    setImages(prev => [...prev, (result.info as any).secure_url]);
+                  }
+                }}
+              >
+                {({ open }) => (
+                  <button onClick={(e) => { e.preventDefault(); open(); }} className="flex items-center justify-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-lg font-medium hover:bg-accent/20 transition-colors border border-accent/20">
+                    <Upload size={16} /> Upload Images
+                  </button>
+                )}
+              </CldUploadWidget>
+            )}
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 pt-2">
+            {images.map((img, i) => (
+              <div key={i} className="relative aspect-square rounded-xl overflow-hidden border border-border group bg-bg-primary">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={img} alt={`Product ${i+1}`} className="w-full h-full object-cover" />
+                <button 
+                  onClick={() => setImages(images.filter((_, j) => j !== i))}
+                  className="absolute top-2 right-2 p-1.5 bg-black/60 hover:bg-danger text-white rounded-lg backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100"
+                >
+                  <X size={14} />
+                </button>
+              </div>
+            ))}
+            {images.length === 0 && (
+              <div className="col-span-full py-12 text-center border-2 border-dashed border-border rounded-xl flex flex-col items-center justify-center bg-bg-primary/50">
+                <Upload size={32} className="text-text-secondary mb-3 opacity-50" />
+                <p className="text-text-secondary">No images uploaded yet.</p>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Features */}
