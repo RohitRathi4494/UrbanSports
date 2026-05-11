@@ -15,8 +15,8 @@ export async function GET(
       SELECT p.*, c.name as category_name, c.slug as category_slug
       FROM products p
       LEFT JOIN categories c ON p.category_id = c.id
-      WHERE p.slug = ?
-    `).get(slug) as Record<string, unknown> | undefined;
+      WHERE p.slug = ? OR p.id = ?
+    `).get(slug, slug) as Record<string, unknown> | undefined;
 
     if (!product) {
       return NextResponse.json({ error: 'Product not found' }, { status: 404 });
